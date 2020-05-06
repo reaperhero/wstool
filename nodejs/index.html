@@ -1,0 +1,24 @@
+<html>
+
+<head>
+
+    <script type="text/javascript" src="https://cdn.rawgit.com/isobit/websocket-nats/master/dist/websocket-nats.dev.js"></script>
+
+    <script>
+        var nats = NATS.connect('ws://localhost:90/');
+
+        setInterval(function() {
+            nats.publish('chenqiangjun', JSON.stringify({
+                date: new Date().toDateString()
+            }));
+        }, 1000);
+
+        nats.subscribe('chenqiangjun', function(data) {
+            console.log(JSON.parse(data));
+        });
+    </script>
+</head>
+
+<body></body>
+
+</html>
